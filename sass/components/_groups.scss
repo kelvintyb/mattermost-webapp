@@ -1,3 +1,6 @@
+#ldap_groups {
+    overflow: visible;
+}
 .groups-list {
     @include single-transition(all, .4s, ease-in-out, 0s);
     padding: .8em 1.5rem;

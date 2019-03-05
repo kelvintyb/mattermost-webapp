@@ -193,16 +193,16 @@ export default class GroupsList extends React.PureComponent {
 
         const opts = {q: searchString};
         if (filterIsLinked) {
-            opts.isLinked = true;
+            opts.is_linked = true;
         }
         if (filterIsUnlinked) {
-            opts.isLinked = false;
+            opts.is_linked = false;
         }
         if (filterIsConfigured) {
-            opts.isConfigured = true;
+            opts.is_configured = true;
         }
         if (filterIsUnconfigured) {
-            opts.isConfigured = false;
+            opts.is_configured = false;
         }
 
         this.props.actions.getLdapGroups(this.state.page, LDAP_GROUPS_PAGE_SIZE, opts).then(() => {
