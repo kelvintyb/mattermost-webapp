@@ -245,7 +245,7 @@ export default class GroupsList extends React.PureComponent {
                         />
                     </span>
                 </div>
-                <div className='filter-row'>
+                {/* <div className='filter-row'>
                     <span
                         className={'filter-check ' + (this.state.filterIsUnlinked ? 'checked' : '')}
                         onClick={() => this.setState({filterIsUnlinked: !this.state.filterIsUnlinked, filterIsLinked: false})}
@@ -258,7 +258,7 @@ export default class GroupsList extends React.PureComponent {
                             defaultMessage='Is Unlinked'
                         />
                     </span>
-                </div>
+                </div> */}
                 <div className='filter-row'>
                     <span
                         className={'filter-check ' + (this.state.filterIsConfigured ? 'checked' : '')}
@@ -273,7 +273,7 @@ export default class GroupsList extends React.PureComponent {
                         />
                     </span>
                 </div>
-                <div className='filter-row'>
+                {/* <div className='filter-row'>
                     <span
                         className={'filter-check ' + (this.state.filterIsUnconfigured ? 'checked' : '')}
                         onClick={() => this.setState({filterIsUnconfigured: !this.state.filterIsUnconfigured, filterIsConfigured: false})}
@@ -286,7 +286,7 @@ export default class GroupsList extends React.PureComponent {
                             defaultMessage='Is Unconfigured'
                         />
                     </span>
-                </div>
+                </div> */}
                 <a
                     onClick={this.searchGroups}
                     className='btn btn-primary search-groups-btn'
