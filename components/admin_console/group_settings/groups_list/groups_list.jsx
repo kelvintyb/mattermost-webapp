@@ -45,6 +45,15 @@ export default class GroupsList extends React.PureComponent {
         };
     }
 
+    closeFilters = (e) => {
+        const filtersNode = document.getElementById('group-filters');
+        if (filtersNode.contains(e.target)) {
+            return null;
+        }
+        this.setState({showFilters: false});
+        document.removeEventListener('click', this.closeFilters);
+    }
+
     componentDidMount() {
         this.props.actions.getLdapGroups(this.state.page, LDAP_GROUPS_PAGE_SIZE).then(() => {
             this.setState({loading: false});
@@ -188,6 +197,7 @@ export default class GroupsList extends React.PureComponent {
     }
 
     searchGroups = () => {
+        document.removeEventListener('click', this.closeFilters);
         this.setState({loading: true, showFilters: false});
         const {searchString, filterIsLinked, filterIsUnlinked, filterIsConfigured, filterIsUnconfigured} = this.state;
 
@@ -230,7 +240,10 @@ export default class GroupsList extends React.PureComponent {
 
     renderSearchFilters = () => {
         return (
-            <div className='group-search-filters'>
+            <div
+                id='group-filters'
+                className='group-search-filters'
+            >
                 <div className='filter-row'>
                     <span
                         className={'filter-check ' + (this.state.filterIsLinked ? 'checked' : '')}
@@ -296,7 +309,7 @@ export default class GroupsList extends React.PureComponent {
                         defaultMessage='Search'
                     />
                 </a>
-                <button
+                {/* <button
                     type='button'
                     className='btn btn-link cancel-filters'
                     onClick={this.clearFilters}
@@ -305,7 +318,7 @@ export default class GroupsList extends React.PureComponent {
                         id='add_user_to_channel_modal.cancel'
                         defaultMessage='Cancel'
                     />
-                </button>
+                </button> */}
             </div>
         );
     }
@@ -337,7 +350,10 @@ export default class GroupsList extends React.PureComponent {
                         />
                         <i
                             className={'fa fa-caret-down group-filter-caret ' + (this.state.showFilters ? 'hidden' : '')}
-                            onClick={() => this.setState({showFilters: true})}
+                            onClick={() => {
+                                document.addEventListener('click', this.closeFilters);
+                                this.setState({showFilters: true});
+                            }}
                         />
                     </div>
                     {this.state.showFilters && this.renderSearchFilters()}
